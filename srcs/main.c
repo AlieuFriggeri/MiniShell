@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:57:05 by kistod            #+#    #+#             */
-/*   Updated: 2023/01/30 09:36:46 by kistod           ###   ########.fr       */
+/*   Updated: 2023/01/30 14:21:26 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,26 @@ int main(int ac, char **av, char **envp)
 	lexer = malloc(sizeof(t_lexer *));
 	while(1)
 	{
-		str = readline("Minishell - -> ");
+		str = readline("Minishell $");
 		if (ft_strncmp("exit", str, 4) == 0)
 			exit(1);
 		if (ft_strlen(str) > 0)
 			add_history(str);
-		splitline(str, &lexer);
-		printf("word %s\n", lexer->word);
-		printf("token %d\n", lexer->token);
+		splitline2(str, &lexer);
+		int i = 1;
+		while (lexer != NULL)
+		{
+		if(lexer->word != NULL)
+		printf("word %d : %s\n", i, lexer->word);
+		if (lexer->token != 0)
+		printf("token %d : %d\n", i, lexer->token);
+		if (lexer->next == NULL)
+			break ;
 		lexer = lexer->next;
-		printf("word %s\n", lexer->word);
-		printf("token %d\n", lexer->token);
+		i++;
+		}
 		free(str);
+		printf("finished lexing\n");
 	}
 	rl_clear_history();
 	exit(EXIT_SUCCESS);

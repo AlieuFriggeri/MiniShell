@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:56:59 by kistod            #+#    #+#             */
-/*   Updated: 2023/01/30 08:37:43 by kistod           ###   ########.fr       */
+/*   Updated: 2023/01/30 15:39:13 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ typedef	struct s_lexer
 int	isquote(char *str, int i);
 int	tokencheck(char *str, int i, t_lexer **lex);
 void	splitline(char *str, t_lexer **lex);
+void	splitline2(char *str, t_lexer **lex);
+int	quotecheck(char *str, int *i, t_lexer **lexer);
 
 #endif

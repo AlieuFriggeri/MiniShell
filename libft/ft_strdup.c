@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:14:44 by afrigger          #+#    #+#             */
-/*   Updated: 2022/10/18 13:00:42 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:50:18 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*ft_strdup(const char *s1)
 	int		i;
 
 	i = 0;
+
 	res = malloc(sizeof(char) * ft_strlen(s1) + 1);
 	if (!res)
 		return (NULL);

@@ -6,7 +6,7 @@
 #    By: kistod <kistod@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 18:49:40 by vgroux            #+#    #+#              #
-#    Updated: 2023/01/27 15:38:15 by kistod           ###   ########.fr        #
+#    Updated: 2023/01/30 14:01:14 by kistod           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RESET = \033[0m
 NAME =     minishell
 
 CC =         gcc
-CFLAGS =     -Wall -Wextra -Werror
+CFLAGS =     -Wall -Wextra -Werror -g
 RM =         rm -rf
 
 DIR_H = headers/
