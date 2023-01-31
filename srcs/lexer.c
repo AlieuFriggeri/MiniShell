@@ -6,79 +6,11 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 12:23:51 by kistod            #+#    #+#             */
-/*   Updated: 2023/01/31 10:26:42 by kistod           ###   ########.fr       */
+/*   Updated: 2023/01/31 10:47:10 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
-
-/* void	splitline(char *str, t_lexer **lex)
-{
-	int i;
-	char *cmd;
-	int j;
-	t_lexer *tmp;
-
-	i = 0;
-	tmp = *lex;
-	while (str[i])
-	{
-		j = 0;
-		cmd = malloc(5000);
-		while (str[i] == ' ')
-			i++;
-		if (tokencheck(str, i, &tmp) == 14 || tokencheck(str, i, &tmp) == 15)
-			i += 2;
-		else if(tokencheck(str, i, &tmp) != 0)
-			i++;
-		else if (isquote(str, i) == 1)
-		{
-			i++;
-			while (isquote(str, i) != 1 && str[i])
-			{
-				cmd[j] = str[i];
-				i++;
-				j++;	
-			}
-			tmp->quote = 1;
-			i++;
-		}
-		else if (isquote(str, i) == 2)
-		{
-			i++;
-			while (isquote(str, i) != 2 && str[i])
-			{
-				cmd[j] = str[i];
-				i++;
-				j++;
-			}
-			tmp->dquote = 1;
-			i++;
-		}
-		else
-		{
-			while (str[i] != ' ' && str[i] != '\t' && str[i])
-			{
-				cmd[j] = str[i];
-				j++;
-				i++;
-			}
-			i++;
-		}
-		cmd[j] = '\0';
-		ft_printf("word is %s\n", cmd);
-		if (tmp->token == 0)
-		{
-			tmp->word = ft_strdup(cmd);
-			printf("word duped is %s\n", tmp->word);
-		}
-		tmp->next = malloc(sizeof(t_lexer *));
-		tmp = tmp->next;
-		printf("bruh\n");
-		tmp->next = NULL;
-		free(cmd);
-	}
-} */
 
 void	splitline(char *str, t_lexer **lex)
 {
@@ -118,11 +50,11 @@ void	splitline(char *str, t_lexer **lex)
 		}
 		else
 		{
+			j = i;
 			while (str[i] != ' ' && str[i])
 				i++;
 			tmp->word = ft_substr(str, j, i - j);
 			i++;
-			j = i;
 			while (str[i] == ' ' && str[i])
 				i++;
 		}

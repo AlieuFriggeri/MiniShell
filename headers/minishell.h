@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:56:59 by kistod            #+#    #+#             */
-/*   Updated: 2023/01/31 10:13:24 by kistod           ###   ########.fr       */
+/*   Updated: 2023/01/31 13:40:17 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,19 @@ typedef	struct s_lexer
 	struct s_lexer			*next;
 	int				token;
 	char			*word;
-	int				quote;
-	int				dquote;
+	int				outfile;
+	int				infile;
 }	t_lexer;
+
+typedef	struct s_parser
+{
+	char	**fullcmd;
+	char	*fullpath;
+	char	**envpath;
+	int		infile;
+	int		outfile;
+}	t_parser;
+
 
 //lexer.c
 int	isquote(char *str, int i);
@@ -54,6 +64,10 @@ int	tokencheck(char *str, int i, t_lexer **lex);
 void	splitline(char *str, t_lexer **lex);
 int	quotecheck(char *str, int index, t_lexer *tmp);
 int	spaceonly(char *str);
+//expander.c
 void	expander(t_lexer **lex);
+//parser.c
+t_parser	*parser(t_lexer **lex);
+void	testpath(t_parser **parser);
 
 #endif

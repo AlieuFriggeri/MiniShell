@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:57:05 by kistod            #+#    #+#             */
-/*   Updated: 2023/01/31 10:24:40 by kistod           ###   ########.fr       */
+/*   Updated: 2023/01/31 13:39:35 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int main(int ac, char **av, char **envp)
 {
-	(void)envp;
 	char *str;
 	using_history();
 	(void)av;
@@ -31,6 +30,7 @@ int main(int ac, char **av, char **envp)
 			add_history(str);
 		splitline(str, &lexer);
 		expander(&lexer);
+		parser(&lexer, envp);
 		int i = 1;
 		while (lexer != NULL)
 		{
