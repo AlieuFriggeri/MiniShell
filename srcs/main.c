@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:57:05 by kistod            #+#    #+#             */
-/*   Updated: 2023/01/30 14:21:26 by kistod           ###   ########.fr       */
+/*   Updated: 2023/01/31 10:24:40 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int main(int ac, char **av, char **envp)
 	(void)ac;
 	t_lexer *lexer;
 	lexer = malloc(sizeof(t_lexer *));
+	//char *env;
 	while(1)
 	{
 		str = readline("Minishell $");
@@ -28,7 +29,8 @@ int main(int ac, char **av, char **envp)
 			exit(1);
 		if (ft_strlen(str) > 0)
 			add_history(str);
-		splitline2(str, &lexer);
+		splitline(str, &lexer);
+		expander(&lexer);
 		int i = 1;
 		while (lexer != NULL)
 		{
@@ -42,7 +44,8 @@ int main(int ac, char **av, char **envp)
 		i++;
 		}
 		free(str);
-		printf("finished lexing\n");
+		int err = rl_on_new_line();
+		printf("finished lexing and err is %d\n", err);
 	}
 	rl_clear_history();
 	exit(EXIT_SUCCESS);

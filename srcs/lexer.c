@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 12:23:51 by kistod            #+#    #+#             */
-/*   Updated: 2023/01/30 15:57:58 by kistod           ###   ########.fr       */
+/*   Updated: 2023/01/31 10:26:42 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@
 	}
 } */
 
-void	splitline2(char *str, t_lexer **lex)
+void	splitline(char *str, t_lexer **lex)
 {
 	int i;
 	int j;
@@ -95,19 +95,26 @@ void	splitline2(char *str, t_lexer **lex)
 			i++;
 		if (tokencheck(str, i, &tmp) != 0)
 		{
-			if (tokencheck(str, i, &tmp) >= 14)
+			if (tmp->token >= 14)
+			{
 				i += 3;
-			else
+			}
+			else if (tmp->token <= 13 && tmp->token >= 11)
 				i += 2;
 			j = i;
+			while (str[i] == ' ' && str[i])
+				i++;
 		}
 		else if (isquote(str, i) != 0)
 		{
-			if(quotecheck(str, &i, &tmp) != 0)
+			if((i = quotecheck(str, i, tmp)) == 1)
 			{
 				perror("quote non fermée\n");
-				exit(1);
+				return;
 			}
+			j = i;
+			while (str[i] == ' ' && str[i])
+				i++;
 		}
 		else
 		{
@@ -116,11 +123,30 @@ void	splitline2(char *str, t_lexer **lex)
 			tmp->word = ft_substr(str, j, i - j);
 			i++;
 			j = i;
+			while (str[i] == ' ' && str[i])
+				i++;
 		}
+		if (i >= (int)ft_strlen(str))
+			break ;
 		tmp->next = malloc(sizeof(t_lexer *));
 		tmp = tmp->next;
 		tmp->next = NULL;
 	}
+}
+
+int	spaceonly(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			i++;
+		else
+			return (0);
+	}
+	return (1);
 }
 
 int	tokencheck(char *str, int i, t_lexer **lex)
@@ -147,34 +173,36 @@ int	tokencheck(char *str, int i, t_lexer **lex)
 	return tmp->token;
 }
 
-int	quotecheck(char *str, int *i, t_lexer **lexer)
+int	quotecheck(char *str, int index, t_lexer *tmp)
 {
 	int j;
-	t_lexer	*tmp;
+	int i;
 
-	j = *i;
-	tmp = *lexer;
-	if (isquote(str, *i) == 1)
+	i = index;
+	j = i;
+	if (isquote(str, i) == 1)
 	{
-		while (str[*i] != '\'' && str[*i])
+		i++;
+		while (str[i] != '\'' && str[i])
 			i++;
-		if (*i >= (int)ft_strlen(str))
+		if (i >= (int)ft_strlen(str))
 			return (1);
-		tmp->word = ft_substr(str, j, j - *i);
-		*i += 1;
+		tmp->word = ft_substr(str, j, i - j + 1);
+		i += 1;
 	}
-	else if (isquote(str, *i) == 2)
+	else if (isquote(str, i) == 2)
 	{
-		while (str[*i] != '"' && str[*i])
+		i++;
+		while (str[i] != '"' && str[i])
 			i++;
-		if (*i >= (int)ft_strlen(str))
+ 		if (i >= (int)ft_strlen(str))
 			return (1);
-		tmp->word = ft_substr(str, j, j - *i);
-		*i += 1;
+		tmp->word = ft_substr(str, j, i - j + 1);
+		i += 1;
 	}
-	else
+	else 
 		return (1);
-	return 0;
+	return i;
 }
 
 int	isquote(char *str, int i)

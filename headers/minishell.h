@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:56:59 by kistod            #+#    #+#             */
-/*   Updated: 2023/01/30 15:39:13 by kistod           ###   ########.fr       */
+/*   Updated: 2023/01/31 10:13:24 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include <readline/history.h>
 # include <errno.h>
 
+#define EOFF 10
 #define PIPE 11
 #define LESS 12
 #define GREAT 13
@@ -51,7 +52,8 @@ typedef	struct s_lexer
 int	isquote(char *str, int i);
 int	tokencheck(char *str, int i, t_lexer **lex);
 void	splitline(char *str, t_lexer **lex);
-void	splitline2(char *str, t_lexer **lex);
-int	quotecheck(char *str, int *i, t_lexer **lexer);
+int	quotecheck(char *str, int index, t_lexer *tmp);
+int	spaceonly(char *str);
+void	expander(t_lexer **lex);
 
 #endif
