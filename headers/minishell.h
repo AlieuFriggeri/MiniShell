@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:56:59 by kistod            #+#    #+#             */
-/*   Updated: 2023/01/31 13:40:17 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/01 10:28:56 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef	struct s_lexer
 	char			*word;
 	int				outfile;
 	int				infile;
+	int				nword;
 }	t_lexer;
 
 typedef	struct s_parser
@@ -69,5 +70,6 @@ void	expander(t_lexer **lex);
 //parser.c
 t_parser	*parser(t_lexer **lex);
 void	testpath(t_parser **parser);
+int	countwords(t_lexer **lex);
 
 #endif
