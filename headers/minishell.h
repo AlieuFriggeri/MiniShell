@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:56:59 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/01 10:28:56 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/02 15:25:08 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef	struct s_parser
 	char	**envpath;
 	int		infile;
 	int		outfile;
+	struct s_parser	*next;
 }	t_parser;
 
 
@@ -71,5 +72,6 @@ void	expander(t_lexer **lex);
 t_parser	*parser(t_lexer **lex);
 void	testpath(t_parser **parser);
 int	countwords(t_lexer **lex);
+int	countpipe(t_lexer **lex);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 12:23:51 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/01 10:26:43 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/02 15:31:14 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	splitline(char *str, t_lexer **lex)
 		{
 			if (tmp->token >= 14)
 			{
-				i += 3;
+				i += 2;
 			}
 			else if (tmp->token <= 13 && tmp->token >= 11)
-				i += 2;
+				i += 1;
 			j = i;
 			while (str[i] == ' ' && str[i])
 				i++;
