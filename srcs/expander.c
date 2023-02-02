@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:09:31 by kistod            #+#    #+#             */
-/*   Updated: 2023/01/31 10:22:17 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/02 15:41:01 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ void	expander(t_lexer **lex)
 	tmp = *lex;
 	while (tmp != NULL)
 	{
-		if (tmp->word != NULL && tmp->word[0] == '$')
+		if (tmp->word != NULL && (tmp->word[0] == '$' ||tmp->word[0] == '~'))
 		{
-			if (getenv(ft_substr(tmp->word, 1, ft_strlen(tmp->word))) != NULL)
+			if (tmp->word[0] == '~')
+				tmp->word = getenv("HOME");
+			else if (getenv(ft_substr(tmp->word, 1, ft_strlen(tmp->word))) != NULL)
 				tmp->word = getenv(ft_substr(tmp->word, 1, ft_strlen(tmp->word)));
 			else
 			{

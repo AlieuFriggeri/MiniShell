@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:48:37 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/02 15:30:24 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/02 15:56:15 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,22 @@ t_parser	*parser(t_lexer **lex)
 		i++;
 		if (tmp->next == NULL)
 			break ;
-		if (tmp->token == PIPE)
+		ft_printf("token : %d\n", tmp->token);
+		if (tmp->token == 11 && tmp->token != 0)
 		{
+			parser->fullcmd[i] = NULL;
 			parser->next = malloc(sizeof(t_parser) + 1);
 			parser = parser->next;
 			parser->next = NULL;
 			i = 0;
 			parser->fullcmd = malloc(sizeof(char *) * countwords(&tmp->next) + 1);
+			if (!parser || !parser->fullcmd)
+				return (NULL);
 		}
 		tmp = tmp->next;
 	}
 	parser->fullcmd[i] = NULL;
-	return parser;
+	return (parser);
 }
 
 void	testpath(t_parser **parser)
