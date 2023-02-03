@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:56:59 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/02 15:25:08 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/03 10:18:56 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,24 @@ typedef	struct s_parser
 
 
 //lexer.c
-int	isquote(char *str, int i);
-int	tokencheck(char *str, int i, t_lexer **lex);
-void	splitline(char *str, t_lexer **lex);
-int	quotecheck(char *str, int index, t_lexer *tmp);
-int	spaceonly(char *str);
+int			isquote(char *str, int i);
+int			tokencheck(char *str, int i, t_lexer **lex);
+void		splitline(char *str, t_lexer **lex);
+int			quotecheck(char *str, int index, t_lexer *tmp);
+int			spaceonly(char *str);
+
 //expander.c
-void	expander(t_lexer **lex);
+void		expander(t_lexer **lex);
+
 //parser.c
 t_parser	*parser(t_lexer **lex);
-void	testpath(t_parser **parser);
-int	countwords(t_lexer **lex);
-int	countpipe(t_lexer **lex);
+void		testpath(t_parser **parser);
+int			countwords(t_lexer **lex);
+int			countpipe(t_lexer **lex);
+void		tokset(t_parser **parser, int i, t_lexer **lex);
+
+//redirect.c
+void		redirect_in(t_parser **pars, t_lexer **lex);
+void		redirect_out(t_parser **pars, t_lexer **lex);
 
 #endif

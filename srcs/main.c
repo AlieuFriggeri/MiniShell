@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:57:05 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/01 10:20:49 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/03 08:38:44 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int main(int ac, char **av, char **envp)
 		lexer = lexer->next;
 		i++;
 		}
-		free(str);
 		free(pars);
 		//int err = rl_on_new_line();
 		printf("finished lexing and err is\n");

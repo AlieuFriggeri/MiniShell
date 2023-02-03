@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:48:37 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/02 15:56:15 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/03 10:17:30 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ t_parser	*parser(t_lexer **lex)
 		parser->fullcmd[i] = tmp->word;
 		ft_printf("parser : %s\n", parser->fullcmd[i]);
 		i++;
-		if (tmp->next == NULL)
-			break ;
-		ft_printf("token : %d\n", tmp->token);
-		if (tmp->token == 11 && tmp->token != 0)
+		if (tmp->token == PIPE)
 		{
 			parser->fullcmd[i] = NULL;
 			parser->next = malloc(sizeof(t_parser) + 1);
@@ -46,6 +43,12 @@ t_parser	*parser(t_lexer **lex)
 			if (!parser || !parser->fullcmd)
 				return (NULL);
 		}
+		else if(tmp->token == LESS)
+			redirect_in(&parser, &tmp);
+		else if (tmp->token == GREAT)
+			redirect_out(&parser, &tmp);
+		if (tmp->next == NULL)
+			break ;
 		tmp = tmp->next;
 	}
 	parser->fullcmd[i] = NULL;
@@ -90,4 +93,23 @@ int	countwords(t_lexer **lex)
 		tmp = tmp->next;
 	}
 	return(i);
+}
+
+void	tokset(t_parser **parser, int i, t_lexer **lex)
+{
+	t_parser *tmp;
+	t_lexer	*tmpl;
+
+	tmp  = *parser;
+	tmpl = *lex;
+	if (tmpl->token == LESSLESS)
+		tmp->fullcmd[i] = ft_strdup("<<");
+	else if (tmpl->token == GREATGREAT)
+		tmp->fullcmd[i] = ft_strdup(">>");
+	else if (tmpl->token == LESS)
+		tmp->fullcmd[i] = ft_strdup("<");
+	else if (tmpl->token == GREAT)
+		tmp->fullcmd[i] = ft_strdup(">");
+	else if (tmpl->token == PIPE)
+		tmp->fullcmd[i] = ft_strdup("|");
 }
