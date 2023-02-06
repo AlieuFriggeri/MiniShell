@@ -6,7 +6,7 @@
 #    By: kistod <kistod@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 18:49:40 by vgroux            #+#    #+#              #
-#    Updated: 2023/02/03 10:17:22 by kistod           ###   ########.fr        #
+#    Updated: 2023/02/06 10:44:24 by kistod           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ DIR_S =	srcs/
 CREATE_DIR_O = @mkdir -p objs
 DIR_O =	objs/
 
-SRCS_LIST =	main.c lexer.c expander.c parser.c redirect.c
+SRCS_LIST =	main.c lexer.c expander.c parser.c redirect.c exec.c
 
 SRCS =		${addprefix ${DIR_S}, ${SRCS_LIST}}
 

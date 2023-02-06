@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:17:01 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/03 10:25:36 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:26:17 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,23 @@ void	redirect_out(t_parser **pars, t_lexer **lex)
 		perror(strerror(ENOENT));
 	dup2(tmp->outfile, STDOUT_FILENO);
 	close(tmp->outfile);
+}
+
+void	check_redirect(t_lexer **lex, t_parser **pars)
+{
+	t_lexer *tml;
+	t_parser *tmp;
+
+	tmp = *pars;
+	tml = *lex;
+	while(tml != NULL)
+	{
+		if (tml->token == LESS)
+			redirect_in(&tmp, &tml);
+		else if (tml->token == GREAT)
+			redirect_out(&tmp, &tml);
+		if (tml->next == NULL)
+			break ;
+		tml = tml->next;
+	}
 }

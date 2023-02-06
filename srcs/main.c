@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:57:05 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/03 08:38:44 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:26:02 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ int main(int ac, char **av, char **envp)
 	(void)ac;
 	t_lexer *lexer;
 	t_parser *pars;
+	int fd[2];
+	pipe(fd);
 	lexer = malloc(sizeof(t_lexer));
-	(void)envp;
 	while(1)
 	{
 		str = readline("Minishell $");
@@ -32,6 +33,10 @@ int main(int ac, char **av, char **envp)
 		splitline(str, &lexer);
 		expander(&lexer);
 		pars = parser(&lexer);
+		pars->pid = fork();
+		if (pars->pid == 0)
+			exec_cmd(&pars, &lexer, envp);
+		waitpid(pars->pid, NULL, 0);
 		int i = 1;
 		while (lexer != NULL)
 		{

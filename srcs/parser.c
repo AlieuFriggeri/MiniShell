@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:48:37 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/03 10:17:30 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:24:51 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,6 @@ t_parser	*parser(t_lexer **lex)
 			if (!parser || !parser->fullcmd)
 				return (NULL);
 		}
-		else if(tmp->token == LESS)
-			redirect_in(&parser, &tmp);
-		else if (tmp->token == GREAT)
-			redirect_out(&parser, &tmp);
 		if (tmp->next == NULL)
 			break ;
 		tmp = tmp->next;
