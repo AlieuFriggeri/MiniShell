@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:48:37 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/06 13:24:51 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/06 13:36:54 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_parser	*parser(t_lexer **lex)
 	while(tmp != NULL)
 	{
 		parser->fullcmd[i] = tmp->word;
-		ft_printf("parser : %s\n", parser->fullcmd[i]);
+		//ft_printf("parser : %s\n", parser->fullcmd[i]);
 		i++;
 		if (tmp->token == PIPE)
 		{
