@@ -6,13 +6,14 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:27:30 by afrigger          #+#    #+#             */
-/*   Updated: 2023/02/01 10:18:23 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/07 08:49:35 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+#include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+/* char	*ft_strchr(const char *s, int c)
 {
 	int		i;
 	char	*res;
@@ -98,4 +99,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	res[sizetotal] = 0;
 	return (res);
-}
+} */

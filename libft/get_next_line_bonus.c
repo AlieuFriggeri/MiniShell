@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:23:11 by afrigger          #+#    #+#             */
-/*   Updated: 2022/10/31 11:30:07 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/02/07 08:48:45 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+#include "libft.h"
 
 // STRJOIN ET FREE DU BUFFER
 char	*ft_free(char *buffer, char *buf)

@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:56:59 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/06 13:24:25 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/07 10:34:24 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void		tokset(t_parser **parser, int i, t_lexer **lex);
 void		redirect_in(t_parser **pars, t_lexer **lex);
 void		redirect_out(t_parser **pars, t_lexer **lex);
 void	check_redirect(t_lexer **lex, t_parser **pars);
+void	append_redirect_out(t_parser **pars, t_lexer **lex);
+void	heredoc(t_parser **pars, t_lexer **lex);
 
 //exec.c
 void	exec_cmd(t_parser **pars, t_lexer **lex, char **envp);
