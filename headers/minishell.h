@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:56:59 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/09 09:42:29 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/09 10:29:55 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	exec_cmd(t_parser **pars, t_lexer **lex, char **envp);
 //free.c
 void	free_lex(t_lexer **lex);
 void	free_pars(t_parser **pars);
+void	free_array(char **str);
 
 
 #endif

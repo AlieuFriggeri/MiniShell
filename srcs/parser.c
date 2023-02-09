@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:48:37 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/06 13:36:54 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/09 10:18:59 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_parser	*parser(t_lexer **lex)
 		tmp = tmp->next;
 	}
 	parser->fullcmd[i] = NULL;
+	parser->next = NULL;
 	return (parser);
 }
 

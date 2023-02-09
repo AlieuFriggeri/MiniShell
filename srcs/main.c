@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:57:05 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/09 10:08:34 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/09 10:25:02 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@ int main(int ac, char **av, char **envp)
 		if (pars->pid == 0)
 			exec_cmd(&pars, &lexer, envp);
 		waitpid(pars->pid, NULL, 0);
-		}
-		printf("slt\n");
+		}	
 		free_lex(&lexer);
-		printf("slt\n");
- 		int i = 1;
+		free_pars(&pars);
+/*  		int i = 1;
 		while (lexer != NULL)
 		{
 		if(lexer->word != NULL)
@@ -56,11 +55,11 @@ int main(int ac, char **av, char **envp)
 			break ;
 		lexer = lexer->next;
 		i++;
-		}
-		//free_pars(&pars);
+		} */
 		//printf("finished lexing and err is\n");
 	}
-	free(lexer);
 	rl_clear_history();
+	free(pars);
+	free(lexer);
 	exit(EXIT_SUCCESS);
 }
