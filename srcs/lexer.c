@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 12:23:51 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/02 15:31:14 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/09 09:45:02 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	splitline(char *str, t_lexer **lex)
 		}
 		if (i >= (int)ft_strlen(str))
 			break ;
-		tmp->next = malloc(sizeof(t_lexer *));
+		tmp->next = malloc(sizeof(t_lexer));
 		tmp = tmp->next;
 		tmp->next = NULL;
 	}
