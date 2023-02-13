@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:57:05 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/09 10:25:02 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/13 16:14:31 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ int main(int ac, char **av, char **envp)
 	(void)ac;
 	t_lexer *lexer;
 	t_parser *pars;
-	int fd[2];
-	pipe(fd);
+	//int fd[2][2];
+	int i;
+
+	i = 0;
 	prompt = ft_strjoin(getenv("USER"), "@minishell-->");
 	lexer = malloc(sizeof(t_lexer));
 	while(1)
@@ -34,13 +36,14 @@ int main(int ac, char **av, char **envp)
 			add_history(str);
 		if (ft_strncmp(str, "", 2) != 0)
 		{
-		splitline(str, &lexer);
-		expander(&lexer);
-		pars = parser(&lexer);
-		pars->pid = fork();
-		if (pars->pid == 0)
-			exec_cmd(&pars, &lexer, envp);
-		waitpid(pars->pid, NULL, 0);
+			splitline(str, &lexer);
+			expander(&lexer);
+			pars = parser(&lexer);
+			pars->pid = fork();
+			if (pars->pid == 0)
+				exec_cmd(&pars, &lexer, envp);
+			else
+				waitpid(pars->pid, NULL, 0);
 		}	
 		free_lex(&lexer);
 		free_pars(&pars);
@@ -58,7 +61,7 @@ int main(int ac, char **av, char **envp)
 		} */
 		//printf("finished lexing and err is\n");
 	}
-	rl_clear_history();
+	clear_history();
 	free(pars);
 	free(lexer);
 	exit(EXIT_SUCCESS);

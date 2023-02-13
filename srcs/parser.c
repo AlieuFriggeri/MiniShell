@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:48:37 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/09 10:18:59 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/13 14:33:00 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_parser	*parser(t_lexer **lex)
 	while(tmp != NULL)
 	{
 		parser->fullcmd[i] = tmp->word;
-		//ft_printf("parser : %s\n", parser->fullcmd[i]);
+		ft_printf("parser : %s\n", parser->fullcmd[i]);
 		i++;
 		if (tmp->token == PIPE)
 		{
@@ -38,10 +38,13 @@ t_parser	*parser(t_lexer **lex)
 			parser->next = malloc(sizeof(t_parser) + 1);
 			parser = parser->next;
 			parser->next = NULL;
-			i = 0;
-			parser->fullcmd = malloc(sizeof(char *) * countwords(&tmp->next) + 1);
+			i = 1;
+			parser->fullcmd = malloc(sizeof(char *) * countwords(&tmp) + 1);
 			if (!parser || !parser->fullcmd)
 				return (NULL);
+			parser->fullcmd[0] = tmp->next->word;
+			parser->envpath = ft_split(getenv("PATH"), ':');
+			testpath(&parser);	
 		}
 		if (tmp->next == NULL)
 			break ;
@@ -59,8 +62,9 @@ void	testpath(t_parser **parser)
 
 	i = 0;
 	tmp = *parser;
+
 	while (tmp->envpath[i] != NULL)
-	{
+	{	
 		tmp->fullpath = ft_strjoin(tmp->envpath[i],  "/");
 		tmp->fullpath = ft_strjoin(tmp->fullpath, tmp->fullcmd[0]);
 		if (access(tmp->fullpath, F_OK | X_OK) != 0)

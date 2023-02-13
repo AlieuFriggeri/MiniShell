@@ -1,16 +1,10 @@
-total 120
-drwxr-xr-x  8 kistod kistod  4096 Feb  9 09:58 .
-drwxr-xr-x 15 kistod kistod  4096 Jan 25 10:16 ..
-drwxr-xr-x  8 kistod kistod  4096 Feb  8 11:26 .git
-drwxr-xr-x  2 kistod kistod  4096 Jan 24 13:36 .vscode
--rw-r--r--  1 kistod kistod  4879 Feb  9 09:41 Makefile
-drwxr-xr-x  2 kistod kistod  4096 Feb  8 11:26 headers
--rw-r--r--  1 kistod kistod     8 Feb  8 11:32 heredoc.txt
-drwxr-xr-x  2 kistod kistod  4096 Feb  8 11:27 libft
--rwxr-xr-x  1 kistod kistod    19 Feb  7 10:49 lmao
--rw-r--r--  1 kistod kistod     0 Feb  9 09:59 lol.txt
--rwxr-xr-x  1 kistod kistod     0 Jan 25 10:16 mdr.txt
--rwxr-xr-x  1 kistod kistod 67768 Feb  9 09:58 minishell
-drwxr-xr-x  2 kistod kistod  4096 Feb  9 09:58 objs
-drwxr-xr-x  2 kistod kistod  4096 Feb  8 11:26 srcs
--rwxr-xr-x  1 kistod kistod    94 Feb  7 10:25 testgnl.txt
+faghdfksgdfggsd
+gsdf
+gsdfgdsfg
+dfsgsdf
+gsdfgdsfgdsfgdfsgdf
+faghdfksgdfggsdsdg
+dfsgsdfdfgsdfg
+dfsgsdfsfdg
+sdfgfds
+gsdfgdsfgdsfgdfsgdf

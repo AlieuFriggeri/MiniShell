@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 09:43:09 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/09 10:50:30 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/13 14:00:24 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	free_pars(t_parser **pars)
 	t_parser	*tmp2;
 
 	tmp = *pars;
-	if (!tmp->envpath || !tmp->fullcmd ||!tmp->fullpath ||!tmp)
+	if (!tmp->envpath || !tmp->fullcmd ||!tmp->fullpath || !tmp)
 		return;
 	if (tmp->next != NULL)
 	{
@@ -45,8 +45,8 @@ void	free_pars(t_parser **pars)
 	}
 	else
 	{
-		if (tmp->envpath)
-			free_array(tmp->envpath);
+		// if (tmp->envpath)
+		// 	free_array(tmp->envpath);
 		tmp->envpath = NULL;
 		tmp->fullcmd = NULL;
 		free(tmp->fullpath);
@@ -87,7 +87,8 @@ void	free_lex(t_lexer **lex)
 	}
 	else
 	{
-		free(tmp->word);
+		if (tmp->word)
+			free(tmp->word);
 		tmp->word = NULL;
 		tmp->next = NULL;
 	}
@@ -101,6 +102,7 @@ void	free_array(char **str)
 	while (str[i] != NULL)
 	{
 		free(str[i]);
+		printf("%d\n", i);
 		i++;
 	}
 	str = NULL;

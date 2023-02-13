@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 12:23:51 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/09 09:45:02 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/13 12:11:20 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	splitline(char *str, t_lexer **lex)
 		tmp = tmp->next;
 		tmp->next = NULL;
 	}
+	tmp->next = NULL;
 }
 
 int	spaceonly(char *str)
