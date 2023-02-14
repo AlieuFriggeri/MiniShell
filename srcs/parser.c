@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:48:37 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/13 14:33:00 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:20:34 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_parser	*parser(t_lexer **lex)
 {
 	t_lexer	*tmp;
 	t_parser	*parser;
+	t_parser	*root;
 	int i;
 
 	tmp = *lex;
@@ -27,10 +28,11 @@ t_parser	*parser(t_lexer **lex)
 	parser->envpath = ft_split(getenv("PATH"), ':');
 	parser->fullcmd[0] = tmp->word;
 	testpath(&parser);
+	root = parser;
 	while(tmp != NULL)
 	{
 		parser->fullcmd[i] = tmp->word;
-		ft_printf("parser : %s\n", parser->fullcmd[i]);
+		//ft_printf("parser : %s\n", parser->fullcmd[i]);
 		i++;
 		if (tmp->token == PIPE)
 		{
@@ -44,7 +46,8 @@ t_parser	*parser(t_lexer **lex)
 				return (NULL);
 			parser->fullcmd[0] = tmp->next->word;
 			parser->envpath = ft_split(getenv("PATH"), ':');
-			testpath(&parser);	
+			testpath(&parser);
+			//printf("%s\n", parser->fullpath);
 		}
 		if (tmp->next == NULL)
 			break ;
@@ -52,7 +55,7 @@ t_parser	*parser(t_lexer **lex)
 	}
 	parser->fullcmd[i] = NULL;
 	parser->next = NULL;
-	return (parser);
+	return (root);
 }
 
 void	testpath(t_parser **parser)

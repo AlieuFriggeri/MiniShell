@@ -1,10 +1,14 @@
-faghdfksgdfggsd
-gsdf
-gsdfgdsfg
-dfsgsdf
-gsdfgdsfgdsfgdfsgdf
-faghdfksgdfggsdsdg
-dfsgsdfdfgsdfg
-dfsgsdfsfdg
-sdfgfds
-gsdfgdsfgdsfgdfsgdf
+Makefile
+bertrand.txt
+headers
+heredoc.txt
+libft
+lmao
+lol.txt
+mdr.txt
+minishell
+objs
+srcs
+testgnl.txt
+667ekip
+"FICHIER LOL.TXT"

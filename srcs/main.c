@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:57:05 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/13 16:14:31 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/02/14 11:20:08 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ int main(int ac, char **av, char **envp)
 	(void)ac;
 	t_lexer *lexer;
 	t_parser *pars;
-	//int fd[2][2];
+	int fd[3][2];
 	int i;
-
+	pipe(fd[0]);
+	pipe(fd[1]);
+	pipe(fd[2]);
 	i = 0;
 	prompt = ft_strjoin(getenv("USER"), "@minishell-->");
 	lexer = malloc(sizeof(t_lexer));
@@ -39,11 +41,21 @@ int main(int ac, char **av, char **envp)
 			splitline(str, &lexer);
 			expander(&lexer);
 			pars = parser(&lexer);
-			pars->pid = fork();
-			if (pars->pid == 0)
+			if (pars->next != NULL)
+				printf("pars.next non null\n");
+			int pid = fork();
+			if (pid == 0)
+			{
 				exec_cmd(&pars, &lexer, envp);
-			else
-				waitpid(pars->pid, NULL, 0);
+			}
+			int pid2 = fork();
+			if(pid2 == 0)
+			{
+				pars = pars->next;
+				exec_cmd(&pars, &lexer, envp);
+			}
+			waitpid(pid, NULL, 0);
+			waitpid(pid2, NULL, 0);
 		}	
 		free_lex(&lexer);
 		free_pars(&pars);
