@@ -12,3 +12,4 @@ srcs
 testgnl.txt
 667ekip
 "FICHIER LOL.TXT"
+prout

@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:48:37 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/14 11:20:34 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:38:54 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,22 @@ void	tokset(t_parser **parser, int i, t_lexer **lex)
 		tmp->fullcmd[i] = ft_strdup(">");
 	else if (tmpl->token == PIPE)
 		tmp->fullcmd[i] = ft_strdup("|");
+}
+
+int	nbpipe(t_lexer **lex)
+{
+	int res;
+	t_lexer *tmp;
+
+	tmp = *lex;
+	res = 0;
+	while(tmp)
+	{
+		if (tmp->token == PIPE)
+			res++;
+		if (tmp->next == NULL)
+			break ;
+		tmp = tmp->next;
+	}
+	return (res);
 }

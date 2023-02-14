@@ -6,7 +6,7 @@
 /*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:56:59 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/13 16:12:26 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:21:36 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ typedef	struct s_parser
 	struct s_parser	*next;
 }	t_parser;
 
+//main.c
+void	pipex(t_parser **pars, t_lexer **lex, char **envp);
+void	close_fd(int fd[][2], int nb);
 
 //lexer.c
 int			isquote(char *str, int i);
@@ -75,7 +78,7 @@ void		expander(t_lexer **lex);
 t_parser	*parser(t_lexer **lex);
 void		testpath(t_parser **parser);
 int			countwords(t_lexer **lex);
-int			countpipe(t_lexer **lex);
+int			nbpipe(t_lexer **lex);
 void		tokset(t_parser **parser, int i, t_lexer **lex);
 
 //redirect.c
