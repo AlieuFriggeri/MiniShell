@@ -6,7 +6,7 @@
 /*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:17:01 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/07 10:49:16 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/15 10:31:07 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,18 +59,18 @@ void	append_redirect_out(t_parser **pars, t_lexer **lex)
 
 void	heredoc(t_parser **pars, t_lexer **lex)
 {
-	//t_parser	*tmp;
+	t_parser	*tmp;
 	t_lexer	*tml;
 	char *str;
 
 	tml = *lex;
 	tml = tml->next;
-	(void)pars;
-/* 	tmp->outfile = open(tml->word, O_WRONLY |O_CREAT, 0777);
-	if (tmp->outfile < 0)
+	tmp = *pars;
+ 	tmp->infile = open(tml->word, O_WRONLY |O_CREAT, 0777);
+	if (tmp->infile < 0)
 		perror(strerror(ENOENT));
-	dup2(tmp->outfile, STDOUT_FILENO);
-	close(tmp->outfile); */
+	dup2(tmp->infile, STDIN_FILENO);
+	close(tmp->infile);
 	printf("%s", tml->word);
 	while(ft_strncmp(str, tml->word, ft_strlen(tml->word) != 0))
 		str = readline(">");
@@ -93,6 +93,7 @@ void	check_redirect(t_lexer **lex, t_parser **pars)
 			append_redirect_out(&tmp, &tml);
 		else if (tml->token == LESSLESS)
 			heredoc(&tmp, &tml);
+		tmp->redirect++;
 		if (tml->next == NULL)
 			break ;
 		tml = tml->next;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:57:05 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/14 16:11:32 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/02/15 10:22:22 by kistod           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int main(int ac, char **av, char **envp)
 	t_lexer *lexer;
 	t_parser *pars;
 	int fd[3][2];
-	int i;
+	//int i;
 
-	i = 0;
+	//i = 0;
 	prompt = ft_strjoin(getenv("USER"), "@minishell-->");
 	lexer = malloc(sizeof(t_lexer));
 	while(1)
@@ -39,7 +39,6 @@ int main(int ac, char **av, char **envp)
 			splitline(str, &lexer);
 			expander(&lexer);
 			pars = parser(&lexer);
-			printf("nbpipe is %d\n", nbpipe(&lexer));
 			if (nbpipe(&lexer) >= 1)
 			{ pipex(&pars, &lexer, envp);
 			// int pid = fork();
@@ -77,8 +76,10 @@ int main(int ac, char **av, char **envp)
 				waitpid(pars->pid, NULL, 0);
 			}
 		}
-		free_lex(&lexer);
-		free_pars(&pars);
+		//le free ne marche pas vrm sur linux (verifier pourquoi)
+		//free_lex(&lexer);
+		//free_pars(&pars);
+		//printf("salut je free\n");
 /*  		int i = 1;
 		while (lexer != NULL)
 		{
