@@ -1,1 +1,20 @@
 gros ya r tabuseprout\n
+667
+Makefile
+bertrand.txt
+headers
+heredoc.txt
+libft
+lmao
+lol.txt
+mdr.txt
+minishell
+objs
+srcs
+testgnl.txt
+8888
+       0       0       0
+       0       0       0
+       0       0       0
+8888
+       0       0       0

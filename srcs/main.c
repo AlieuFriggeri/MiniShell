@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:57:05 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/15 10:22:22 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/16 12:51:35 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int main(int ac, char **av, char **envp)
 			}
 		}
 		//le free ne marche pas vrm sur linux (verifier pourquoi)
-		//free_lex(&lexer);
-		//free_pars(&pars);
+		free_lex(&lexer);
+		free_pars(&pars);
 		//printf("salut je free\n");
 /*  		int i = 1;
 		while (lexer != NULL)
@@ -108,10 +108,13 @@ void	pipex(t_parser **pars, t_lexer **lex, char **envp)
 	int			i;
 	int pid;
 	int pid2;
+	int npipe = nbpipe(lex);
+	//int stdin = dup(STDIN_FILENO);
+	//int stdout = dup(STDOUT_FILENO);
 
 	tmp = *pars;
 	i = 0;
-	while(i < nbpipe(lex))
+	while(i < npipe)
 	{
 		pipe(fd[i]);
 		i++;
@@ -121,31 +124,39 @@ void	pipex(t_parser **pars, t_lexer **lex, char **envp)
 	if (pid == 0)
 	{
 		dup2(fd[i][1], 1);
-		close_fd(fd, nbpipe(lex));
+		close_fd(fd, npipe);
 		exec_cmd(&tmp, lex, envp);
 	}
 	waitpid(pid, NULL, 0);
-	while(i < nbpipe(lex))
+	lexiter(lex);
+	t_lexer *tml;
+	tml = *lex;
+	while(i < npipe)
 	{
 		pid2 = fork();
 		if(pid2 == 0)
 		{
 			dup2(fd[i][0], 0);
-			if (i < nbpipe(lex))
+			if (tmp->next != NULL)
 				dup2(fd[i + 1][1], 1);
-			close_fd(fd, nbpipe(lex));
+			close_fd(fd, npipe);
 			tmp = tmp->next;
 			exec_cmd(&tmp, lex, envp);
 		}
 		//dup2(fd[1][0], 0);
 		//close(fd[i][0]);
-		if (i + 1 < nbpipe(lex))
+		if (i + 1 < npipe)
 			close(fd[i][1]);
 		else
-			close_fd(fd, nbpipe(lex));
+			close_fd(fd, npipe);
 		waitpid(pid2, NULL, 0);
 		i++;
 		tmp = tmp->next;
+		lexiter(lex);
+		// dup2(stdin, 0);
+		// dup2(stdout, 1);
+		// close(stdin);
+		// close(stdout);
 	}
 }
 
@@ -160,4 +171,16 @@ void	close_fd(int fd[][2], int n)
 		close(fd[i][0]);
 		i++;
 	}
+}
+
+void	lexiter(t_lexer **lex)
+{
+	t_lexer *tml;
+
+	tml = *lex;
+	while (tml->token != PIPE && tml->next != NULL)
+		tml = tml->next;
+	if (tml->token == PIPE)
+		tml = tml->next;
+	*lex = tml;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:56:59 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/15 09:59:07 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/16 11:26:19 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef	struct s_parser
 //main.c
 void	pipex(t_parser **pars, t_lexer **lex, char **envp);
 void	close_fd(int fd[][2], int nb);
+void	lexiter(t_lexer **lex);
 
 //lexer.c
 int			isquote(char *str, int i);
@@ -83,8 +84,8 @@ int			nbpipe(t_lexer **lex);
 void		tokset(t_parser **parser, int i, t_lexer **lex);
 
 //redirect.c
-void		redirect_in(t_parser **pars, t_lexer **lex);
-void		redirect_out(t_parser **pars, t_lexer **lex);
+void	redirect_in(t_parser **pars, t_lexer **lex);
+void	redirect_out(t_parser **pars, t_lexer **lex);
 void	check_redirect(t_lexer **lex, t_parser **pars);
 void	append_redirect_out(t_parser **pars, t_lexer **lex);
 void	heredoc(t_parser **pars, t_lexer **lex);

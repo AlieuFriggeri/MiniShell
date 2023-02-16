@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kistod <kistod@student.42.fr>              +#+  +:+       +#+        */
+/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:32:39 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/15 10:25:58 by kistod           ###   ########.fr       */
+/*   Updated: 2023/02/16 12:35:16 by afrigger         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	exec_cmd(t_parser **pars, t_lexer **lex, char **envp)
 	int			error;
 
 	tmp = *pars;
-	if (tmp->next != NULL || nbpipe(lex) == 0)
+	if ((tmp != NULL || nbpipe(lex) == 0))
 		check_redirect(lex, pars);
 	error = execve(tmp->fullpath, tmp->fullcmd + 1, envp);
 	if (error != 0)
