@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jolivier <jolivier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:57:05 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/16 12:51:35 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:36:18 by jolivier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
+
+int g_status = 0;
 
 int main(int ac, char **av, char **envp)
 {

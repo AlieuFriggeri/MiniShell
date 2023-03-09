@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afrigger <afrigger@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jolivier <jolivier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 10:56:59 by kistod            #+#    #+#             */
-/*   Updated: 2023/02/16 11:26:19 by afrigger         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:36:48 by jolivier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <errno.h>
+
+# include "parsing.h"
+
+int	g_status;
 
 #define EOFF 10
 #define PIPE 11

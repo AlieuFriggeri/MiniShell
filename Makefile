@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kistod <kistod@student.42.fr>              +#+  +:+       +#+         #
+#    By: jolivier <jolivier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 18:49:40 by vgroux            #+#    #+#              #
-#    Updated: 2023/02/09 09:41:57 by kistod           ###   ########.fr        #
+#    Updated: 2023/03/09 12:00:18 by jolivier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ DIR_S =	srcs/
 CREATE_DIR_O = @mkdir -p objs
 DIR_O =	objs/
 
-SRCS_LIST =	main.c lexer.c expander.c parser.c redirect.c exec.c free.c
+SRCS_LIST =	main.c lexer.c expander.c parser.c redirect.c exec.c free.c \
+			parsing/parsing.c parsing/parsing_var.c 
 
 SRCS =		${addprefix ${DIR_S}, ${SRCS_LIST}}
 
@@ -65,6 +66,7 @@ all: ${NAME}
 ${DIR_O}%.o:${DIR_S}%.c
 	@printf "\033[38;5;240m"
 	@mkdir -p ${DIR_O}
+	@mkdir -p ${DIR_O}parsing
 	${CC} ${CFLAGS} ${LIBFT_INC} -I ${DIR_H} -o $@ -c $<
 
 clean:
